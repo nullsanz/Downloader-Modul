@@ -4,178 +4,304 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>UT Pustaka Downloader</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
+      :root {
+        --primary: #2563eb;
+        --primary-hover: #1d4ed8;
+        --bg-color: #f8fafc;
+        --card-bg: #ffffff;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --border-color: #e2e8f0;
+        --input-bg: #f8fafc;
+        --focus-ring: #bfdbfe;
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-md:
+          0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --radius: 12px;
+      }
+
       body {
-        font-family: "Trebuchet MS", "Segoe UI Variable", "Candara", sans-serif;
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
         margin: 0;
-        width: 380px;
-        color: #16213e;
-        background:
-          radial-gradient(
-            circle at 10% 10%,
-            #dff6ff 0,
-            #dff6ff 18%,
-            transparent 40%
-          ),
-          linear-gradient(135deg, #f6f9ff 0%, #eef3ff 45%, #f9fbff 100%);
+        width: 360px;
+        color: var(--text-main);
+        background-color: var(--bg-color);
       }
-      .card {
-        margin: 14px;
-        border: 1px solid #d5e1ff;
-        border-radius: 14px;
-        padding: 14px;
-        background: #ffffffcc;
-        backdrop-filter: blur(2px);
-        box-shadow: 0 10px 22px #1f3c8830;
+
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 20px;
+        background: var(--card-bg);
+        border-bottom: 1px solid var(--border-color);
       }
-      h3 {
+
+      .header img {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        box-shadow: var(--shadow-sm);
+      }
+
+      .header-text h3 {
         margin: 0;
-        font-size: 20px;
-        letter-spacing: 0.3px;
-      }
-      .subtitle {
-        margin-top: 4px;
-        font-size: 12px;
-        color: #516185;
-      }
-      label {
-        display: block;
-        margin-top: 10px;
-        font-size: 13px;
-        color: #2f3f63;
+        font-size: 16px;
         font-weight: 600;
+        color: var(--text-main);
       }
-      input[type="text"],
-      input[type="number"] {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 9px 10px;
-        border: 1px solid #c9d8ff;
-        border-radius: 10px;
-        background: #fbfdff;
-        color: #12223d;
-        font-size: 15px;
+
+      .header-text p {
+        margin: 0;
+        font-size: 12px;
+        color: var(--text-muted);
       }
+
+      .container {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 12px;
+      }
+
+      .form-row .form-group {
+        flex: 1;
+      }
+
+      label {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-main);
+      }
+
+      input,
       select {
         width: 100%;
         box-sizing: border-box;
-        padding: 9px 10px;
-        border: 1px solid #c9d8ff;
-        border-radius: 10px;
-        background: #fbfdff;
-        color: #12223d;
-        font-size: 15px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background: var(--input-bg);
+        color: var(--text-main);
+        font-size: 14px;
+        font-family: inherit;
+        transition: all 0.2s ease;
       }
+
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px var(--focus-ring);
+        background: var(--card-bg);
+      }
+
+      .badge {
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        color: #1e3a8a;
+        border-radius: 8px;
+        padding: 8px 12px;
+        font-size: 12px;
+        line-height: 1.4;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .badge::before {
+        content: "ℹ️";
+        font-size: 14px;
+      }
+
       button {
-        margin-top: 14px;
-        padding: 11px 10px;
+        padding: 12px;
         width: 100%;
-        border: 0;
-        border-radius: 10px;
-        font-weight: 700;
-        font-size: 17px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
         color: white;
-        background: linear-gradient(
-          135deg,
-          #0f62fe 0%,
-          #1f6fff 55%,
-          #4c8dff 100%
-        );
-        box-shadow: 0 8px 16px #0f62fe33;
+        background-color: var(--primary);
+        box-shadow: var(--shadow-sm);
         cursor: pointer;
+        transition:
+          background-color 0.2s,
+          transform 0.1s;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
       }
+
+      button:hover:not(:disabled) {
+        background-color: var(--primary-hover);
+      }
+
+      button:active:not(:disabled) {
+        transform: scale(0.98);
+      }
+
       button:disabled {
-        opacity: 0.55;
+        opacity: 0.6;
         cursor: not-allowed;
       }
-      .small {
-        font-size: 12px;
-        color: #5b6a89;
-      }
-      .badge {
-        margin-top: 8px;
-        background: #edf4ff;
-        border: 1px solid #d4e4ff;
-        color: #33507b;
-        border-radius: 999px;
-        padding: 6px 10px;
-        font-size: 12px;
-      }
-      .progress-wrap {
-        margin-top: 12px;
-        padding: 10px;
-        border: 1px solid #dce6ff;
+
+      .progress-card {
+        padding: 16px;
+        border: 1px solid var(--border-color);
         border-radius: 8px;
-        background: #f7faff;
+        background: var(--card-bg);
+        box-shadow: var(--shadow-sm);
       }
+
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
       .progress-bar {
         width: 100%;
-        height: 12px;
-        background: #dbe7ff;
+        height: 8px;
+        background: #f1f5f9;
         border-radius: 999px;
         overflow: hidden;
-        margin-top: 6px;
       }
+
       .progress-bar > div {
         height: 100%;
         width: 0%;
-        background: linear-gradient(90deg, #0f62fe 0%, #54a0ff 100%);
-        transition: width 0.2s ease;
+        background-color: var(--primary);
+        border-radius: 999px;
+        transition: width 0.3s ease;
       }
+
       .status {
         font-size: 12px;
-        margin-top: 6px;
-        word-break: break-word;
+        color: var(--text-muted);
+        margin-top: 8px;
+        line-height: 1.4;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 8px;
+        font-size: 11px;
+        color: #94a3b8;
       }
     </style>
   </head>
   <body>
-    <div class="card">
-      <h3>UT Pustaka Downloader</h3>
-      <div class="subtitle">
-        Auto-detect doc + subfolder, halaman input manual.
+    <div class="header">
+      <img
+        src="Gemini_Generated_Image_2h69dz2h69dz2h69.png"
+        alt="Logo"
+        onerror="this.style.display = 'none'"
+      />
+      <div class="header-text">
+        <h3>UT Pustaka Downloader</h3>
+        <p>Auto-detect doc & subfolder</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Doc ID</label>
+          <input id="doc" type="text" placeholder="M5" value="M5" />
+        </div>
+        <div class="form-group">
+          <label>Subfolder</label>
+          <input
+            id="sub"
+            type="text"
+            placeholder="SKOM431504"
+            value="SKOM431504"
+          />
+        </div>
       </div>
 
-      <label>
-        Doc ID (contoh: M5)
-        <input id="doc" type="text" value="M5" />
-      </label>
-      <label>
-        Subfolder (contoh: SKOM431504)
-        <input id="sub" type="text" value="SKOM431504" />
-      </label>
-      <label>
-        Total Halaman (isi manual)
-        <input id="total" type="number" value="41" min="1" />
-      </label>
-      <label>
-        Delay per halaman (ms)
-        <input id="delay" type="number" value="1500" min="0" />
-      </label>
-      <label>
-        Format output
+      <div class="form-row">
+        <div class="form-group">
+          <label>Total Halaman</label>
+          <input id="total" type="number" placeholder="41" value="41" min="1" />
+        </div>
+        <div class="form-group">
+          <label>Delay (ms)</label>
+          <input id="delay" type="number" value="1500" min="0" step="100" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Format Output</label>
         <select id="format">
-          <option value="pdf" selected>PDF (semua halaman jadi 1 file)</option>
-          <option value="zip">ZIP (gambar terpisah)</option>
+          <option value="pdf" selected>📄 PDF (Satu File)</option>
+          <option value="zip">🗂️ ZIP (Gambar Terpisah)</option>
         </select>
-      </label>
+      </div>
 
       <div class="badge">
-        Jumlah halaman tidak terdeteksi otomatis untuk menghindari nilai keliru.
+        Isi total halaman secara manual sesuai dengan jumlah halaman di web.
       </div>
 
-      <button id="start">Mulai Unduh</button>
+      <button id="start">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Mulai Unduh
+      </button>
 
-      <div class="progress-wrap">
-        <div><strong>Progres</strong></div>
+      <div class="progress-card">
+        <div class="progress-header">
+          <span>Progres Unduhan</span>
+        </div>
         <div class="progress-bar"><div id="bar"></div></div>
         <div id="status" class="status">
           Siap. Menunggu input manual jumlah halaman.
         </div>
       </div>
 
-      <div class="small">
-        Buka halaman dokumen di pustaka.ut.ac.id sebelum menjalankan.
+      <div class="footer">
+        Buka halaman pembaca di pustaka.ut.ac.id terlebih dahulu.
       </div>
     </div>
 
