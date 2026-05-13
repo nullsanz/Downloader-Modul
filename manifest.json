@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "UT Pustaka Downloader",
+  "version": "1.0",
+  "description": "Download halaman JPG dari pustaka.ut.ac.id menggunakan sesi browser.",
+  "permissions": ["scripting", "activeTab"],
+  "host_permissions": ["https://pustaka.ut.ac.id/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://pustaka.ut.ac.id/*"],
+      "js": ["content-script.js"]
+    }
+  ],
+  "icons": {
+    "16": "Gemini_Generated_Image_2h69dz2h69dz2h69.png",
+    "32": "Gemini_Generated_Image_2h69dz2h69dz2h69.png",
+    "48": "Gemini_Generated_Image_2h69dz2h69dz2h69.png",
+    "128": "Gemini_Generated_Image_2h69dz2h69dz2h69.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "UT Pustaka Downloader",
+    "default_icon": {
+      "16": "Gemini_Generated_Image_2h69dz2h69dz2h69.png",
+      "32": "Gemini_Generated_Image_2h69dz2h69dz2h69.png"
+    }
+  }
+}

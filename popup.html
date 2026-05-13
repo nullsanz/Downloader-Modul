@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>UT Pustaka Downloader</title>
+    <style>
+      body {
+        font-family: "Trebuchet MS", "Segoe UI Variable", "Candara", sans-serif;
+        margin: 0;
+        width: 380px;
+        color: #16213e;
+        background:
+          radial-gradient(
+            circle at 10% 10%,
+            #dff6ff 0,
+            #dff6ff 18%,
+            transparent 40%
+          ),
+          linear-gradient(135deg, #f6f9ff 0%, #eef3ff 45%, #f9fbff 100%);
+      }
+      .card {
+        margin: 14px;
+        border: 1px solid #d5e1ff;
+        border-radius: 14px;
+        padding: 14px;
+        background: #ffffffcc;
+        backdrop-filter: blur(2px);
+        box-shadow: 0 10px 22px #1f3c8830;
+      }
+      h3 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: 0.3px;
+      }
+      .subtitle {
+        margin-top: 4px;
+        font-size: 12px;
+        color: #516185;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        font-size: 13px;
+        color: #2f3f63;
+        font-weight: 600;
+      }
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 9px 10px;
+        border: 1px solid #c9d8ff;
+        border-radius: 10px;
+        background: #fbfdff;
+        color: #12223d;
+        font-size: 15px;
+      }
+      select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 9px 10px;
+        border: 1px solid #c9d8ff;
+        border-radius: 10px;
+        background: #fbfdff;
+        color: #12223d;
+        font-size: 15px;
+      }
+      button {
+        margin-top: 14px;
+        padding: 11px 10px;
+        width: 100%;
+        border: 0;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 17px;
+        color: white;
+        background: linear-gradient(
+          135deg,
+          #0f62fe 0%,
+          #1f6fff 55%,
+          #4c8dff 100%
+        );
+        box-shadow: 0 8px 16px #0f62fe33;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+      .small {
+        font-size: 12px;
+        color: #5b6a89;
+      }
+      .badge {
+        margin-top: 8px;
+        background: #edf4ff;
+        border: 1px solid #d4e4ff;
+        color: #33507b;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+      .progress-wrap {
+        margin-top: 12px;
+        padding: 10px;
+        border: 1px solid #dce6ff;
+        border-radius: 8px;
+        background: #f7faff;
+      }
+      .progress-bar {
+        width: 100%;
+        height: 12px;
+        background: #dbe7ff;
+        border-radius: 999px;
+        overflow: hidden;
+        margin-top: 6px;
+      }
+      .progress-bar > div {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #0f62fe 0%, #54a0ff 100%);
+        transition: width 0.2s ease;
+      }
+      .status {
+        font-size: 12px;
+        margin-top: 6px;
+        word-break: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h3>UT Pustaka Downloader</h3>
+      <div class="subtitle">
+        Auto-detect doc + subfolder, halaman input manual.
+      </div>
+
+      <label>
+        Doc ID (contoh: M5)
+        <input id="doc" type="text" value="M5" />
+      </label>
+      <label>
+        Subfolder (contoh: SKOM431504)
+        <input id="sub" type="text" value="SKOM431504" />
+      </label>
+      <label>
+        Total Halaman (isi manual)
+        <input id="total" type="number" value="41" min="1" />
+      </label>
+      <label>
+        Delay per halaman (ms)
+        <input id="delay" type="number" value="1500" min="0" />
+      </label>
+      <label>
+        Format output
+        <select id="format">
+          <option value="pdf" selected>PDF (semua halaman jadi 1 file)</option>
+          <option value="zip">ZIP (gambar terpisah)</option>
+        </select>
+      </label>
+
+      <div class="badge">
+        Jumlah halaman tidak terdeteksi otomatis untuk menghindari nilai keliru.
+      </div>
+
+      <button id="start">Mulai Unduh</button>
+
+      <div class="progress-wrap">
+        <div><strong>Progres</strong></div>
+        <div class="progress-bar"><div id="bar"></div></div>
+        <div id="status" class="status">
+          Siap. Menunggu input manual jumlah halaman.
+        </div>
+      </div>
+
+      <div class="small">
+        Buka halaman dokumen di pustaka.ut.ac.id sebelum menjalankan.
+      </div>
+    </div>
+
+    <script src="lib/jszip.min.js"></script>
+    <script src="lib/jspdf.umd.min.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>
