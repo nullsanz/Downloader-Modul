@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>UT Pustaka Downloader</title>
+    <title>UT Pustaka Downloader Pro</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -12,29 +12,18 @@
       :root {
         --primary: #2563eb;
         --primary-hover: #1d4ed8;
-        --bg-color: #f8fafc;
-        --card-bg: #ffffff;
-        --text-main: #0f172a;
-        --text-muted: #64748b;
-        --border-color: #e2e8f0;
-        --input-bg: #f8fafc;
-        --focus-ring: #bfdbfe;
-        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        --shadow-md:
-          0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        --radius: 12px;
+        --emerald: #10b981;
+        --emerald-hover: #059669;
+        --bg-color: #090d16;
+        --card-bg: #0f1523;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --border-color: #1e293b;
+        --focus-ring: #38bdf8;
       }
 
       body {
-        font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          Roboto,
-          Helvetica,
-          Arial,
-          sans-serif;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         margin: 0;
         width: 360px;
         color: var(--text-main);
@@ -45,7 +34,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 16px 20px;
+        padding: 14px 18px;
         background: var(--card-bg);
         border-bottom: 1px solid var(--border-color);
       }
@@ -54,168 +43,150 @@
         width: 32px;
         height: 32px;
         border-radius: 8px;
-        box-shadow: var(--shadow-sm);
       }
 
       .header-text h3 {
         margin: 0;
-        font-size: 16px;
-        font-weight: 600;
-        color: var(--text-main);
+        font-size: 15px;
+        font-weight: 700;
+        color: #38bdf8;
       }
 
       .header-text p {
         margin: 0;
-        font-size: 12px;
+        font-size: 11px;
         color: var(--text-muted);
       }
 
       .container {
-        padding: 20px;
+        padding: 14px 18px;
         display: flex;
         flex-direction: column;
-        gap: 16px;
-      }
-
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
+        gap: 11px;
       }
 
       .form-row {
         display: flex;
-        gap: 12px;
+        gap: 10px;
       }
 
-      .form-row .form-group {
+      .form-group {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
       }
 
       label {
-        font-size: 13px;
-        font-weight: 500;
-        color: var(--text-main);
+        font-size: 11.5px;
+        font-weight: 600;
+        color: #cbd5e1;
       }
 
-      input,
-      select {
+      input[type="text"],
+      input[type="number"] {
         width: 100%;
         box-sizing: border-box;
-        padding: 10px 12px;
+        padding: 7px 10px;
         border: 1px solid var(--border-color);
         border-radius: 8px;
-        background: var(--input-bg);
+        background: #050811;
         color: var(--text-main);
-        font-size: 14px;
+        font-size: 12.5px;
         font-family: inherit;
-        transition: all 0.2s ease;
+        font-weight: 600;
       }
 
-      input:focus,
-      select:focus {
+      input:focus {
         outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px var(--focus-ring);
-        background: var(--card-bg);
+        border-color: #38bdf8;
       }
 
-      .badge {
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
-        color: #1e3a8a;
-        border-radius: 8px;
-        padding: 8px 12px;
-        font-size: 12px;
-        line-height: 1.4;
+      .checkbox-row {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         gap: 8px;
+        padding: 2px 0;
+        user-select: none;
       }
 
-      .badge::before {
-        content: "ℹ️";
-        font-size: 14px;
+      .checkbox-row input[type="checkbox"] {
+        width: 15px;
+        height: 15px;
+        accent-color: #38bdf8;
+        cursor: pointer;
+        margin: 0;
       }
 
-      button {
-        padding: 12px;
+      .checkbox-row label {
+        font-size: 11.5px;
+        color: #cbd5e1;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .badge-info {
+        background: rgba(56, 189, 248, 0.08);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        color: #7dd3fc;
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      .badge-info code {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1px 4px;
+        border-radius: 4px;
+        color: #38bdf8;
+        font-family: monospace;
+      }
+
+      .btn-all {
+        padding: 11px;
         width: 100%;
         border: none;
         border-radius: 8px;
-        font-weight: 600;
-        font-size: 14px;
+        font-weight: 700;
+        font-size: 13px;
         color: white;
-        background-color: var(--primary);
-        box-shadow: var(--shadow-sm);
+        background: linear-gradient(135deg, #059669, #10b981);
         cursor: pointer;
-        transition:
-          background-color 0.2s,
-          transform 0.1s;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        transition: all 0.2s;
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
       }
 
-      button:hover:not(:disabled) {
-        background-color: var(--primary-hover);
+      .btn-all:hover {
+        background: linear-gradient(135deg, #047857, #059669);
       }
 
-      button:active:not(:disabled) {
-        transform: scale(0.98);
-      }
-
-      button:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
-
-      .progress-card {
-        padding: 16px;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        background: var(--card-bg);
-        box-shadow: var(--shadow-sm);
-      }
-
-      .progress-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-        font-size: 13px;
-        font-weight: 600;
-      }
-
-      .progress-bar {
+      .btn-single {
+        padding: 9px;
         width: 100%;
-        height: 8px;
-        background: #f1f5f9;
-        border-radius: 999px;
-        overflow: hidden;
-      }
-
-      .progress-bar > div {
-        height: 100%;
-        width: 0%;
-        background-color: var(--primary);
-        border-radius: 999px;
-        transition: width 0.3s ease;
-      }
-
-      .status {
+        border: 1px solid #334155;
+        border-radius: 8px;
+        font-weight: 600;
         font-size: 12px;
-        color: var(--text-muted);
-        margin-top: 8px;
-        line-height: 1.4;
+        color: #f8fafc;
+        background: #1e293b;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .btn-single:hover {
+        background: #334155;
       }
 
       .footer {
         text-align: center;
-        margin-top: 8px;
-        font-size: 11px;
-        color: #94a3b8;
+        font-size: 10.5px;
+        color: #64748b;
+        line-height: 1.35;
       }
     </style>
   </head>
@@ -227,86 +198,60 @@
         onerror="this.style.display = 'none'"
       />
       <div class="header-text">
-        <h3>UT Pustaka Downloader</h3>
-        <p>Auto-detect doc & subfolder</p>
+        <h3>UT Downloader Pro v2.1</h3>
+        <p>Auto-Clean Watermark & Null Cloud Tag</p>
       </div>
     </div>
 
     <div class="container">
       <div class="form-row">
         <div class="form-group">
-          <label>Doc ID</label>
-          <input id="doc" type="text" placeholder="M5" value="M5" />
+          <label>Mata Kuliah (Subfolder)</label>
+          <input id="sub" type="text" placeholder="EMBS4321" value="EMBS4321" />
         </div>
-        <div class="form-group">
-          <label>Subfolder</label>
-          <input
-            id="sub"
-            type="text"
-            placeholder="SKOM431504"
-            value="SKOM431504"
-          />
+        <div class="form-group" style="max-width: 110px;">
+          <label>Modul (Doc ID)</label>
+          <input id="doc" type="text" placeholder="M1" value="M1" />
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label>Total Halaman</label>
-          <input id="total" type="number" placeholder="41" value="41" min="1" />
+          <label>Tag Watermark Kustom</label>
+          <input id="watermark-text" type="text" placeholder="ig: null.cloud" value="ig: null.cloud" />
         </div>
-        <div class="form-group">
+        <div class="form-group" style="max-width: 85px;">
           <label>Delay (ms)</label>
-          <input id="delay" type="number" value="1500" min="0" step="100" />
+          <input id="delay" type="number" value="300" min="100" step="50" />
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Format Output</label>
-        <select id="format">
-          <option value="pdf" selected>📄 PDF (Satu File)</option>
-          <option value="zip">🗂️ ZIP (Gambar Terpisah)</option>
-        </select>
+      <div class="checkbox-row">
+        <input type="checkbox" id="clean-watermark" checked />
+        <label for="clean-watermark">
+          Hapus watermark & bar hitam asli UT
+        </label>
       </div>
 
-      <div class="badge">
-        Isi total halaman secara manual sesuai dengan jumlah halaman di web.
+      <div class="badge-info">
+        ✨ <strong>Watermark UT Bersih:</strong> Bar hitam & watermark UT otomatis disapu putih.<br>
+        🏷️ <strong>Subtle Tag:</strong> Disematkan <code>ig: null.cloud</code> elegan di margin bawah.<br>
+        🌐 <strong>Background Tab:</strong> Bebas buka tab lain saat unduh berlangsung!
       </div>
 
-      <button id="start">
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-          <polyline points="7 10 12 15 17 10"></polyline>
-          <line x1="12" y1="15" x2="12" y2="3"></line>
-        </svg>
-        Mulai Unduh
+      <button id="btn-download-all" class="btn-all">
+        📚 UNDUH SEMUA MODUL (FULL 1 PDF)
       </button>
 
-      <div class="progress-card">
-        <div class="progress-header">
-          <span>Progres Unduhan</span>
-        </div>
-        <div class="progress-bar"><div id="bar"></div></div>
-        <div id="status" class="status">
-          Siap. Menunggu input manual jumlah halaman.
-        </div>
-      </div>
+      <button id="btn-download-single" class="btn-single">
+        ⚡ Unduh Modul Saat Ini Saja
+      </button>
 
       <div class="footer">
-        Buka halaman pembaca di pustaka.ut.ac.id terlebih dahulu.
+        Proses unduh akan berjalan di tab UT yang sedang aktif. Pantau lewat pil progres di atas halaman!
       </div>
     </div>
 
-    <script src="lib/jszip.min.js"></script>
-    <script src="lib/jspdf.umd.min.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>

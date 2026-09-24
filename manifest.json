@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "UT Pustaka Downloader",
-  "version": "1.0",
-  "description": "Download halaman JPG dari pustaka.ut.ac.id menggunakan sesi browser.",
+  "name": "UT Pustaka Downloader Pro",
+  "version": "2.1",
+  "description": "Download modul pustaka.ut.ac.id tanpa watermark UT, otomatis sematkan tag kustom, auto-batch, & background engine.",
   "permissions": ["scripting", "activeTab"],
   "host_permissions": ["https://pustaka.ut.ac.id/*"],
   "content_scripts": [
     {
       "matches": ["https://pustaka.ut.ac.id/*"],
-      "js": ["content-script.js"]
+      "js": ["lib/jspdf.umd.min.js", "content-script.js"]
     }
   ],
   "icons": {
@@ -19,7 +19,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "UT Pustaka Downloader",
+    "default_title": "UT Pustaka Downloader Pro",
     "default_icon": {
       "16": "Gemini_Generated_Image_2h69dz2h69dz2h69.png",
       "32": "Gemini_Generated_Image_2h69dz2h69dz2h69.png"
