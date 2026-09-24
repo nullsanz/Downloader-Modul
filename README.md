@@ -1,102 +1,81 @@
-# UT Pustaka Downloader (Browser Extension)
+# 📚 UT Pustaka Downloader Pro (Downloader-Modul)
 
-Ekstensi ini membantu mengunduh halaman gambar dari dokumen di `pustaka.ut.ac.id` lalu menyimpannya sebagai:
+<p align="center">
+  <img src="logo.png" width="120" height="120" alt="Logo UT Downloader Pro" style="border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);" />
+</p>
 
-- `PDF` (default, semua halaman jadi satu file), atau
-- `ZIP` (opsi kedua, berisi file JPG per halaman).
+<p align="center">
+  <strong>Ekstensi Browser Modern untuk Mengunduh Modul RBV Ruang Baca Virtual UT (Pustaka UT) Cepat, Otomatis, dan Bersih Tanpa Watermark.</strong>
+</p>
 
-Ekstensi berjalan memakai sesi login browser yang aktif, sehingga request mengikuti cookie/auth milik user.
+<p align="center">
+  <img src="https://img.shields.io/badge/Version-2.1-blue.svg?style=flat-square" alt="Version 2.1" />
+  <img src="https://img.shields.io/badge/Manifest-V3-emerald.svg?style=flat-square" alt="Manifest V3" />
+  <img src="https://img.shields.io/badge/License-MIT-slate.svg?style=flat-square" alt="License MIT" />
+</p>
 
-## Fitur Utama
+---
 
-- Auto-detect `Doc ID` dan `Subfolder` dari URL dokumen yang sedang dibuka.
-- `Total Halaman` diisi **manual** agar tidak salah deteksi.
-- Pilihan output `PDF` atau `ZIP`.
-- Progress bar + status proses real-time per halaman.
-- Delay antar halaman untuk mengurangi risiko throttle/blokir.
+## 🌟 Fitur Unggulan (v2.1)
 
-## Persiapan
+- 📚 **Full Auto-Batch (1 Klik 1 Buku Jadi 1 PDF):**  
+  Otomatis menarik `DAFIS`, `TINJAUAN`, dan seluruh modul (`M1` hingga `M12`) lalu menyatukannya langsung ke dalam 1 file PDF lengkap dan terurut rapi.
+- ✨ **Auto-Clean Watermark UT (100% Bersih & Rapi):**  
+  Secara cerdas menghapus bar hitam tebal dan watermark copyright yang menutupi bagian bawah/atas halaman dari server pustaka UT, menghasilkan halaman buku yang bersih seperti buku cetak aslinya.
+- ⚡ **Auto-Detect Akhir Halaman:**  
+  Kamu tidak perlu lagi mengetik atau menghitung total halaman secara manual. Sistem secara otomatis mendeteksi batas akhir halaman tiap modul.
+- 🌐 **Background Tab Execution:**  
+  Begitu tombol unduh diklik, popup boleh langsung ditutup! Proses download berjalan di latar belakang tab modul, dan kamu bebas membuka tab lain atau mengerjakan hal lain sambil memantau progres lewat pil mengambang di atas layar.
+- ⚡ **Single Module Download:**  
+  Pilihan untuk mengunduh modul yang sedang aktif saja dalam hitungan detik jika kamu hanya membutuhkan modul tertentu.
 
-Pastikan:
+---
 
-1. Kamu sudah login ke `pustaka.ut.ac.id` di browser.
-2. Folder ekstensi ini sudah tersedia di project: `browser-extension`.
+## 🚀 Panduan Instalasi (Chrome / Edge / Brave)
 
-## Instalasi Extension (Chrome/Edge)
+1. **Clone atau Unduh Repositori ini:**
+   ```bash
+   git clone https://github.com/nullsanz/Downloader-Modul.git
+   ```
+   *(atau klik **Code** > **Download ZIP** lalu ekstrak ke komputermu).*
 
-1. Buka `chrome://extensions` (atau `edge://extensions`).
-2. Aktifkan `Developer mode`.
-3. Klik `Load unpacked`.
-4. Pilih folder `browser-extension`.
-5. Jika sudah pernah load sebelumnya, gunakan tombol `Reload` saat ada perubahan file.
+2. **Buka Menu Ekstensi Browser:**
+   - Di Google Chrome: buka `chrome://extensions`
+   - Di Microsoft Edge: buka `edge://extensions`
+   - Di Brave Browser: buka `brave://extensions`
 
-## Cara Pakai
+3. **Aktifkan Developer Mode:**
+   - Nyalakan saklar **Developer mode** (Mode Pengembang) di pojok kanan atas.
 
-1. Buka halaman dokumen, contoh:
-   `https://pustaka.ut.ac.id/reader/index.php?subfolder=SKOM431504/&doc=M5.pdf`
-2. Klik ikon extension `UT Pustaka Downloader`.
-3. Cek form:
-   - `Doc ID`: biasanya terisi otomatis.
-   - `Subfolder`: biasanya terisi otomatis.
-   - `Total Halaman`: **isi manual** (wajib).
-   - `Delay per halaman (ms)`: contoh `1000` - `2000`.
-   - `Format output`: default `PDF`, bisa diganti `ZIP`.
-4. Klik `Mulai Unduh`.
-5. Tunggu progress mencapai selesai, file akan otomatis terunduh.
+4. **Muat Ekstensi:**
+   - Klik tombol **Load unpacked** (Muat yang belum dibongkar).
+   - Pilih folder hasil clone/ekstrak repositori ini.
 
-## Penjelasan Field
+---
 
-- `Doc ID`
-  Contoh: `M5` (tanpa `.pdf`).
+## 📖 Cara Penggunaan
 
-- `Subfolder`
-  Contoh: `SKOM431504`.
+1. Buka dan login ke portal [Ruang Baca Virtual Pustaka UT](https://pustaka.ut.ac.id/reader/).
+2. Buka salah satu modul buku mata kuliah yang ingin kamu baca/unduh.
+3. Klik ikon ekstensi **UT Pustaka Downloader Pro** di bilah ekstensi browser.
+4. Kode mata kuliah (`Subfolder`) dan modul (`Doc ID`) akan otomatis terdeteksi:
+   - Klik **📚 UNDUH SEMUA MODUL (FULL 1 PDF)** untuk menyatukan seluruh buku ke dalam 1 file PDF.
+   - Atau klik **⚡ Unduh Modul Saat Ini Saja** untuk mengunduh modul yang sedang dibuka.
+5. Pantau status pengunduhan lewat pil progres mengambang di bagian atas halaman tab UT.
+6. File PDF hasil unduhan yang bersih tanpa watermark akan otomatis tersimpan di folder *Downloads* komputermu.
 
-- `Total Halaman`
-  Wajib angka `>= 1`. Isi sesuai jumlah halaman dokumen yang benar.
+---
 
-- `Delay per halaman (ms)`
-  Jeda antar request. Semakin besar nilainya, semakin aman dari limit server tapi proses lebih lama.
+## 🛠️ Tech Stack & Arsitektur
 
-- `Format output`
-  - `PDF`: satu file PDF gabungan (default).
-  - `ZIP`: arsip berisi JPG per halaman.
+- **Manifest V3** (Standar ekstensi Chrome modern & aman).
+- **Vanilla JavaScript & HTML5 Canvas** (Offscreen dynamic image processing untuk pembersihan watermark tanpa distorsi resolusi).
+- **jsPDF** (Kompilasi dokumen PDF instan langsung di sisi peramban pengguna).
 
-## Rekomendasi Setting
+---
 
-- Gunakan `PDF` untuk hasil yang rapi dan mudah dibaca.
-- Gunakan delay `1000-2000 ms` untuk stabilitas.
-- Jika dokumen besar, jangan set delay terlalu kecil.
+## ⚖️ Lisensi & Disclaimer
 
-## Troubleshooting
+Proyek ini dibuat untuk keperluan studi dan aksesibilitas akademik personal bagi mahasiswa Universitas Terbuka. Seluruh materi hak cipta modul adalah milik Universitas Terbuka.
 
-### 1) Tombol tidak jalan / tidak ada perubahan
-
-- Pastikan tab aktif adalah halaman `pustaka.ut.ac.id` dokumen reader.
-- Tutup dan buka ulang popup extension.
-- Reload extension di `chrome://extensions`.
-
-### 2) Gagal di halaman tertentu (HTTP error)
-
-- Naikkan `Delay per halaman (ms)`.
-- Pastikan sesi login masih aktif (coba refresh halaman dokumen dan login ulang bila perlu).
-- Coba ulang proses dari awal.
-
-### 3) Hasil halaman kurang / terpotong
-
-- Cek `Total Halaman` (harus benar, karena manual).
-- Ulang download dengan nilai total halaman yang sesuai.
-
-### 4) PDF sangat besar / browser terasa berat
-
-- Kurangi jumlah halaman per batch (misalnya per 20-30 halaman).
-- Atau gunakan format `ZIP` lalu gabungkan manual jika perlu.
-
-## Catatan Penting
-
-- Deteksi total halaman otomatis **dinonaktifkan** karena sering tidak akurat di UI reader.
-- Ekstensi ini ditujukan untuk penggunaan personal/akademik sesuai hak akses akun.
-
-## Keamanan dan Kepatuhan
-
-Gunakan hanya untuk dokumen yang memang kamu berhak akses/download. Pastikan tetap mengikuti Terms of Service `pustaka.ut.ac.id` dan kebijakan hak cipta yang berlaku.
+Dikelola & dikembangkan oleh [nullsanz](https://github.com/nullsanz).

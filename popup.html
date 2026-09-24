@@ -40,9 +40,10 @@
       }
 
       .header img {
-        width: 32px;
-        height: 32px;
+        width: 34px;
+        height: 34px;
         border-radius: 8px;
+        object-fit: cover;
       }
 
       .header-text h3 {
@@ -59,10 +60,10 @@
       }
 
       .container {
-        padding: 14px 18px;
+        padding: 16px 18px;
         display: flex;
         flex-direction: column;
-        gap: 11px;
+        gap: 12px;
       }
 
       .form-row {
@@ -78,7 +79,7 @@
       }
 
       label {
-        font-size: 11.5px;
+        font-size: 12px;
         font-weight: 600;
         color: #cbd5e1;
       }
@@ -87,12 +88,12 @@
       input[type="number"] {
         width: 100%;
         box-sizing: border-box;
-        padding: 7px 10px;
+        padding: 8px 10px;
         border: 1px solid var(--border-color);
         border-radius: 8px;
         background: #050811;
         color: var(--text-main);
-        font-size: 12.5px;
+        font-size: 13px;
         font-family: inherit;
         font-weight: 600;
       }
@@ -102,45 +103,14 @@
         border-color: #38bdf8;
       }
 
-      .checkbox-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 2px 0;
-        user-select: none;
-      }
-
-      .checkbox-row input[type="checkbox"] {
-        width: 15px;
-        height: 15px;
-        accent-color: #38bdf8;
-        cursor: pointer;
-        margin: 0;
-      }
-
-      .checkbox-row label {
-        font-size: 11.5px;
-        color: #cbd5e1;
-        cursor: pointer;
-        font-weight: 500;
-      }
-
       .badge-info {
         background: rgba(56, 189, 248, 0.08);
         border: 1px solid rgba(56, 189, 248, 0.2);
         color: #7dd3fc;
         border-radius: 8px;
-        padding: 8px 10px;
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      .badge-info code {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 1px 4px;
-        border-radius: 4px;
-        color: #38bdf8;
-        font-family: monospace;
+        padding: 9px 12px;
+        font-size: 11.5px;
+        line-height: 1.5;
       }
 
       .btn-all {
@@ -184,22 +154,22 @@
 
       .footer {
         text-align: center;
-        font-size: 10.5px;
+        font-size: 11px;
         color: #64748b;
-        line-height: 1.35;
+        line-height: 1.4;
       }
     </style>
   </head>
   <body>
     <div class="header">
       <img
-        src="Gemini_Generated_Image_2h69dz2h69dz2h69.png"
+        src="logo.png"
         alt="Logo"
-        onerror="this.style.display = 'none'"
+        onerror="this.src='icon128.png'"
       />
       <div class="header-text">
         <h3>UT Downloader Pro v2.1</h3>
-        <p>Auto-Clean Watermark & Null Cloud Tag</p>
+        <p>Full Auto-Batch & Clean Background Engine</p>
       </div>
     </div>
 
@@ -217,25 +187,13 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label>Tag Watermark Kustom</label>
-          <input id="watermark-text" type="text" placeholder="ig: null.cloud" value="ig: null.cloud" />
-        </div>
-        <div class="form-group" style="max-width: 85px;">
-          <label>Delay (ms)</label>
+          <label>Kecepatan Delay (ms)</label>
           <input id="delay" type="number" value="300" min="100" step="50" />
         </div>
       </div>
 
-      <div class="checkbox-row">
-        <input type="checkbox" id="clean-watermark" checked />
-        <label for="clean-watermark">
-          Hapus watermark & bar hitam asli UT
-        </label>
-      </div>
-
       <div class="badge-info">
-        ✨ <strong>Watermark UT Bersih:</strong> Bar hitam & watermark UT otomatis disapu putih.<br>
-        🏷️ <strong>Subtle Tag:</strong> Disematkan <code>ig: null.cloud</code> elegan di margin bawah.<br>
+        ✨ <strong>Auto-Clean:</strong> Watermark & bar hitam UT otomatis dihapus bersih.<br>
         🌐 <strong>Background Tab:</strong> Bebas buka tab lain saat unduh berlangsung!
       </div>
 
@@ -248,7 +206,7 @@
       </button>
 
       <div class="footer">
-        Proses unduh akan berjalan di tab UT yang sedang aktif. Pantau lewat pil progres di atas halaman!
+        Proses unduh akan berjalan di tab UT yang sedang aktif. Pantau lewat badge pil di atas halaman!
       </div>
     </div>
 

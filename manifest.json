@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "UT Pustaka Downloader Pro",
   "version": "2.1",
-  "description": "Download modul pustaka.ut.ac.id tanpa watermark UT, otomatis sematkan tag kustom, auto-batch, & background engine.",
+  "description": "Download modul pustaka.ut.ac.id super cepat, bersih tanpa watermark UT, auto-batch semua modul, dan jalan di background tab.",
   "permissions": ["scripting", "activeTab"],
   "host_permissions": ["https://pustaka.ut.ac.id/*"],
   "content_scripts": [
@@ -12,17 +12,17 @@
     }
   ],
   "icons": {
-    "16": "Gemini_Generated_Image_2h69dz2h69dz2h69.png",
-    "32": "Gemini_Generated_Image_2h69dz2h69dz2h69.png",
-    "48": "Gemini_Generated_Image_2h69dz2h69dz2h69.png",
-    "128": "Gemini_Generated_Image_2h69dz2h69dz2h69.png"
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "action": {
     "default_popup": "popup.html",
     "default_title": "UT Pustaka Downloader Pro",
     "default_icon": {
-      "16": "Gemini_Generated_Image_2h69dz2h69dz2h69.png",
-      "32": "Gemini_Generated_Image_2h69dz2h69dz2h69.png"
+      "16": "icon16.png",
+      "32": "icon32.png"
     }
   }
 }

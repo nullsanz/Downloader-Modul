@@ -113,7 +113,7 @@ async function fetchPageImage(docName, subfolderName, pageNum) {
 function processAndCleanPageImage(dataUrl, options = {}) {
   return new Promise((resolve) => {
     const cleanWatermark = options.cleanWatermark !== false;
-    const watermarkText = options.watermarkText !== undefined ? options.watermarkText : 'ig: null.cloud';
+    const watermarkText = options.watermarkText || '';
 
     const img = new Image();
     img.onload = () => {
@@ -376,7 +376,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
   const options = {
     cleanWatermark: request.cleanWatermark !== false,
-    watermarkText: request.watermarkText !== undefined ? request.watermarkText : 'ig: null.cloud'
+    watermarkText: request.watermarkText || ''
   };
 
   if (request.action === 'startSingleDownload') {
