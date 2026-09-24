@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>UT Pustaka Downloader Pro (Edu Research)</title>
+    <title>UT Pustaka Downloader Pro (Edu)</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -14,7 +14,6 @@
         --primary-hover: #1d4ed8;
         --emerald: #10b981;
         --emerald-hover: #059669;
-        --amber: #f59e0b;
         --bg-color: #090d16;
         --card-bg: #0f1523;
         --text-main: #f8fafc;
@@ -49,7 +48,7 @@
 
       .header-text h3 {
         margin: 0;
-        font-size: 14.5px;
+        font-size: 15px;
         font-weight: 700;
         color: #38bdf8;
       }
@@ -104,28 +103,8 @@
         border-color: #38bdf8;
       }
 
-      .badge-warning {
-        background: rgba(245, 158, 11, 0.12);
-        border: 1px solid rgba(245, 158, 11, 0.35);
-        color: #fcd34d;
-        border-radius: 8px;
-        padding: 8px 11px;
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      .badge-info {
-        background: rgba(56, 189, 248, 0.08);
-        border: 1px solid rgba(56, 189, 248, 0.2);
-        color: #7dd3fc;
-        border-radius: 8px;
-        padding: 8px 11px;
-        font-size: 11px;
-        line-height: 1.45;
-      }
-
-      /* Tombol Utama: Unduh Per Modul (Rekomendasi Mutlak) */
-      .btn-primary-single {
+      /* Tombol Utama: Unduh Modul Saat Ini */
+      .btn-download-main {
         padding: 12px 14px;
         width: 100%;
         border: none;
@@ -138,41 +117,104 @@
         box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
         transition: all 0.2s;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2px;
+        gap: 8px;
       }
 
-      .btn-primary-single:hover {
+      .btn-download-main:hover {
         background: linear-gradient(135deg, #047857, #059669);
         transform: translateY(-1px);
+        box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
       }
 
-      .btn-subtext {
-        font-size: 10.5px;
-        font-weight: 500;
-        opacity: 0.9;
-      }
-
-      /* Tombol Sekunder: Unduh Semua Modul (Sering Gagal / Tidak Disarankan) */
-      .btn-secondary-all {
-        padding: 8px 10px;
-        width: 100%;
-        border: 1px solid #334155;
+      /* Section Bagian Awal Buku */
+      .early-section {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px 12px;
+        background: #0a0f1d;
+        border: 1px solid var(--border-color);
         border-radius: 8px;
+      }
+
+      .early-section-label {
+        font-size: 11px;
+        font-weight: 700;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .early-buttons {
+        display: flex;
+        gap: 8px;
+      }
+
+      .btn-sub-action {
+        flex: 1;
+        padding: 8px 6px;
+        border: 1px solid #334155;
+        border-radius: 6px;
         font-weight: 600;
         font-size: 11.5px;
-        color: #94a3b8;
+        color: #f1f5f9;
         background: #1e293b;
         cursor: pointer;
         transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
       }
 
-      .btn-secondary-all:hover {
+      .btn-sub-action:hover {
+        background: #2563eb;
+        border-color: #3b82f6;
+        color: white;
+      }
+
+      /* Quick Chip Selector untuk Modul */
+      .chips-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 2px;
+      }
+
+      .chip-btn {
+        padding: 3px 8px;
+        border: 1px solid #334155;
+        background: #0f172a;
+        color: #cbd5e1;
+        border-radius: 5px;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+
+      .chip-btn:hover {
         background: #334155;
-        color: #f1f5f9;
-        border-color: #64748b;
+        color: #38bdf8;
+        border-color: #38bdf8;
+      }
+
+      .chip-btn.active {
+        background: #2563eb;
+        color: white;
+        border-color: #3b82f6;
+      }
+
+      .badge-info {
+        background: rgba(56, 189, 248, 0.08);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        color: #7dd3fc;
+        border-radius: 8px;
+        padding: 8px 11px;
+        font-size: 11px;
+        line-height: 1.45;
       }
 
       .footer {
@@ -192,7 +234,7 @@
       />
       <div class="header-text">
         <h3>UT Downloader Pro (Edu)</h3>
-        <p>Eksperimen Riset Peramban & Belajar</p>
+        <p>Eksperimen Riset Peramban & Pembelajaran</p>
       </div>
     </div>
 
@@ -202,38 +244,56 @@
           <label>Mata Kuliah (Subfolder)</label>
           <input id="sub" type="text" placeholder="EMBS4321" value="EMBS4321" />
         </div>
-        <div class="form-group" style="max-width: 110px;">
+        <div class="form-group" style="max-width: 100px;">
           <label>Modul (Doc ID)</label>
           <input id="doc" type="text" placeholder="M1" value="M1" />
         </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>Kecepatan Delay (ms)</label>
+        <div class="form-group" style="max-width: 75px;">
+          <label>Delay (ms)</label>
           <input id="delay" type="number" value="300" min="100" step="50" />
         </div>
       </div>
 
-      <!-- Peringatan Rekomendasi Penting -->
-      <div class="badge-warning">
-        ⚠️ <strong>SARAN PENTING:</strong> Gunakan <strong>Unduh Per-Modul</strong> di bawah. Hindari unduh langsung full buku karena server sering limit/gagal di tengah jalan. Nanti file PDF-nya tinggal disatukan sendiri!
+      <!-- Quick Switcher Modul -->
+      <div style="display:flex; flex-direction:column; gap:4px;">
+        <label style="font-size: 11px; color: #94a3b8;">Pilih Cepat Modul:</label>
+        <div class="chips-row">
+          <button class="chip-btn" data-doc="M1">M1</button>
+          <button class="chip-btn" data-doc="M2">M2</button>
+          <button class="chip-btn" data-doc="M3">M3</button>
+          <button class="chip-btn" data-doc="M4">M4</button>
+          <button class="chip-btn" data-doc="M5">M5</button>
+          <button class="chip-btn" data-doc="M6">M6</button>
+          <button class="chip-btn" data-doc="M7">M7</button>
+          <button class="chip-btn" data-doc="M8">M8</button>
+          <button class="chip-btn" data-doc="M9">M9</button>
+          <button class="chip-btn" data-doc="M10">M10</button>
+          <button class="chip-btn" data-doc="M11">M11</button>
+          <button class="chip-btn" data-doc="M12">M12</button>
+        </div>
       </div>
 
-      <!-- Tombol Utama (Direkomendasikan) -->
-      <button id="btn-download-single" class="btn-primary-single">
-        <span>⚡ UNDUH MODUL SAAT INI SAJA</span>
-        <span class="btn-subtext">✅ Paling Stabil, Cepat, & Anti-Gagal (Disarankan)</span>
+      <!-- Tombol Utama: Unduh Modul Saat Ini -->
+      <button id="btn-download-single" class="btn-download-main">
+        ⚡ UNDUH MODUL INI (PDF)
       </button>
 
-      <!-- Tombol Sekunder (Tidak Disarankan) -->
-      <button id="btn-download-all" class="btn-secondary-all">
-        ⚠️ Unduh Semua Modul Sekaligus (Sering Gagal / Timeout)
-      </button>
+      <!-- Fitur Khusus: Bagian Awal Buku (DAFIS & TINJAUAN) -->
+      <div class="early-section">
+        <span class="early-section-label">Bagian Awal Buku:</span>
+        <div class="early-buttons">
+          <button id="btn-download-dafis" class="btn-sub-action" title="Unduh Daftar Isi (DAFIS)">
+            📋 Unduh DAFIS
+          </button>
+          <button id="btn-download-tinjauan" class="btn-sub-action" title="Unduh Tinjauan Mata Kuliah / Pendahuluan (TINJAUAN)">
+            📖 Unduh TINJAUAN
+          </button>
+        </div>
+      </div>
 
       <div class="badge-info">
         ✨ <strong>Watermark Bersih:</strong> Bar hitam & watermark UT otomatis dibersihkan.<br>
-        🌐 <strong>Background Tab:</strong> Bebas buka tab lain saat unduh berlangsung!
+        💡 <strong>Tips Anti-Gagal:</strong> Unduh per modul secara terpisah, lalu satukan file PDF-nya sendiri agar 100% stabil.
       </div>
 
       <div class="footer">

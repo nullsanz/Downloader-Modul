@@ -255,118 +255,6 @@ async function runSingleModuleDownload(doc, sub, delayMs, options = {}) {
   isDownloading = false;
 }
 
-// Download SEMUA Modul (Full Buku 1 PDF)
-async function runAllModulesDownload(sub, delayMs, options = {}) {
-  isDownloading = true;
-  isCancelled = false;
-
-  const targetDocs = ['DAFIS', 'TINJAUAN'];
-  for (let i = 1; i <= 12; i++) {
-    targetDocs.push(`M${i}`);
-  }
-
-  const allFiles = [];
-  let finishedDocsCount = 0;
-  let consecutiveMissing = 0;
-
-  for (let d = 0; d < targetDocs.length; d++) {
-    if (isCancelled) break;
-    const currentDoc = targetDocs[d];
-
-    showFloatingPill(`[${d + 1}/${targetDocs.length}] ${currentDoc}`, `Mengecek modul...`, Math.round((d / targetDocs.length) * 90));
-
-    let page = 1;
-    let docFiles = [];
-
-    while (!isCancelled) {
-      showFloatingPill(`[${d + 1}/${targetDocs.length}] ${currentDoc}`, `Halaman ${page}... (Total: ${allFiles.length})`, Math.round((d / targetDocs.length) * 90));
-      const res = await fetchPageImage(currentDoc, sub, page);
-
-      if (!res) {
-        // Halaman modul ini habis
-        break;
-      }
-
-      docFiles.push(res);
-      allFiles.push(res);
-      page++;
-
-      if (delayMs > 0) {
-        await new Promise(r => setTimeout(r, delayMs));
-      }
-    }
-
-    if (docFiles.length > 0) {
-      finishedDocsCount++;
-      consecutiveMissing = 0;
-    } else {
-      if (currentDoc.startsWith('M')) {
-        consecutiveMissing++;
-        if (consecutiveMissing >= 2 && d >= 5) {
-          // Buku sudah tamat
-          break;
-        }
-      }
-    }
-  }
-
-  if (isCancelled || allFiles.length === 0) {
-    hideFloatingPill();
-    isDownloading = false;
-    if (!isCancelled) alert('Tidak ada modul yang berhasil ditarik.');
-    return;
-  }
-
-  showFloatingPill(`Mengompilasi Full Buku`, `Membersihkan watermark & menyusun ${allFiles.length} Hal...`, 94);
-
-  const { jsPDF } = window.jspdf || {};
-  if (!jsPDF) {
-    alert('Library jsPDF tidak ditemukan.');
-    hideFloatingPill();
-    isDownloading = false;
-    return;
-  }
-
-  const pdf = new jsPDF({ unit: 'pt', format: 'a4', orientation: 'portrait' });
-  const pageW = pdf.internal.pageSize.getWidth();
-  const pageH = pdf.internal.pageSize.getHeight();
-
-  for (let i = 0; i < allFiles.length; i++) {
-    if (isCancelled) break;
-    if (i % 3 === 0 || i === allFiles.length - 1) {
-      showFloatingPill(`Mengompilasi Full Buku`, `Hal ${i + 1}/${allFiles.length} (Watermark Cleaned)...`, Math.round(94 + (i / allFiles.length) * 5));
-    }
-
-    const rawDataUrl = `data:image/jpeg;base64,${allFiles[i].data}`;
-    const processed = await processAndCleanPageImage(rawDataUrl, options);
-    allFiles[i].data = null; // Free raw base64 memory
-
-    const scale = Math.min(pageW / processed.width, pageH / processed.height);
-    const drawW = processed.width * scale;
-    const drawH = processed.height * scale;
-    const x = (pageW - drawW) / 2;
-    const y = (pageH - drawH) / 2;
-
-    if (i > 0) pdf.addPage();
-    pdf.addImage(processed.dataUrl, 'JPEG', x, y, drawW, drawH);
-    processed.dataUrl = null; // Free processed image memory
-  }
-
-  if (isCancelled) {
-    hideFloatingPill();
-    isDownloading = false;
-    return;
-  }
-
-  const pdfBlob = pdf.output('blob');
-  const pdfName = `UT_${sub}_FULL_LENGKAP.pdf`;
-  saveBlob(pdfBlob, pdfName);
-
-  showFloatingPill(`🎉 SUKSES BESAR!`, `${pdfName} (${allFiles.length} Hal, ${finishedDocsCount} Modul - Cleaned)`, 100);
-  setTimeout(hideFloatingPill, 6000);
-  isDownloading = false;
-}
-
 // Message Listener from Popup
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'getDocInfo') {
@@ -385,16 +273,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       return;
     }
     runSingleModuleDownload(request.doc, request.subfolder, request.delayMs, options);
-    sendResponse({ ok: true });
-    return;
-  }
-
-  if (request.action === 'startAllDownload') {
-    if (isDownloading) {
-      alert('Proses pengunduhan sedang berjalan!');
-      return;
-    }
-    runAllModulesDownload(request.subfolder, request.delayMs, options);
     sendResponse({ ok: true });
     return;
   }
