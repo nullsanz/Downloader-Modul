@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>UT Pustaka Downloader Pro</title>
+    <title>UT Pustaka Downloader Pro (Edu Research)</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -14,6 +14,7 @@
         --primary-hover: #1d4ed8;
         --emerald: #10b981;
         --emerald-hover: #059669;
+        --amber: #f59e0b;
         --bg-color: #090d16;
         --card-bg: #0f1523;
         --text-main: #f8fafc;
@@ -34,7 +35,7 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 14px 18px;
+        padding: 13px 18px;
         background: var(--card-bg);
         border-bottom: 1px solid var(--border-color);
       }
@@ -48,7 +49,7 @@
 
       .header-text h3 {
         margin: 0;
-        font-size: 15px;
+        font-size: 14.5px;
         font-weight: 700;
         color: #38bdf8;
       }
@@ -60,10 +61,10 @@
       }
 
       .container {
-        padding: 16px 18px;
+        padding: 14px 18px;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 11px;
       }
 
       .form-row {
@@ -79,7 +80,7 @@
       }
 
       label {
-        font-size: 12px;
+        font-size: 11.5px;
         font-weight: 600;
         color: #cbd5e1;
       }
@@ -103,18 +104,29 @@
         border-color: #38bdf8;
       }
 
+      .badge-warning {
+        background: rgba(245, 158, 11, 0.12);
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        color: #fcd34d;
+        border-radius: 8px;
+        padding: 8px 11px;
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
       .badge-info {
         background: rgba(56, 189, 248, 0.08);
         border: 1px solid rgba(56, 189, 248, 0.2);
         color: #7dd3fc;
         border-radius: 8px;
-        padding: 9px 12px;
-        font-size: 11.5px;
-        line-height: 1.5;
+        padding: 8px 11px;
+        font-size: 11px;
+        line-height: 1.45;
       }
 
-      .btn-all {
-        padding: 11px;
+      /* Tombol Utama: Unduh Per Modul (Rekomendasi Mutlak) */
+      .btn-primary-single {
+        padding: 12px 14px;
         width: 100%;
         border: none;
         border-radius: 8px;
@@ -123,38 +135,49 @@
         color: white;
         background: linear-gradient(135deg, #059669, #10b981);
         cursor: pointer;
-        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
         transition: all 0.2s;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 6px;
+        gap: 2px;
       }
 
-      .btn-all:hover {
+      .btn-primary-single:hover {
         background: linear-gradient(135deg, #047857, #059669);
+        transform: translateY(-1px);
       }
 
-      .btn-single {
-        padding: 9px;
+      .btn-subtext {
+        font-size: 10.5px;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      /* Tombol Sekunder: Unduh Semua Modul (Sering Gagal / Tidak Disarankan) */
+      .btn-secondary-all {
+        padding: 8px 10px;
         width: 100%;
         border: 1px solid #334155;
         border-radius: 8px;
         font-weight: 600;
-        font-size: 12px;
-        color: #f8fafc;
+        font-size: 11.5px;
+        color: #94a3b8;
         background: #1e293b;
         cursor: pointer;
         transition: all 0.2s;
       }
 
-      .btn-single:hover {
+      .btn-secondary-all:hover {
         background: #334155;
+        color: #f1f5f9;
+        border-color: #64748b;
       }
 
       .footer {
         text-align: center;
-        font-size: 11px;
+        font-size: 10.5px;
         color: #64748b;
         line-height: 1.4;
       }
@@ -168,8 +191,8 @@
         onerror="this.src='icon128.png'"
       />
       <div class="header-text">
-        <h3>UT Downloader Pro v2.1</h3>
-        <p>Full Auto-Batch & Clean Background Engine</p>
+        <h3>UT Downloader Pro (Edu)</h3>
+        <p>Eksperimen Riset Peramban & Belajar</p>
       </div>
     </div>
 
@@ -192,21 +215,29 @@
         </div>
       </div>
 
+      <!-- Peringatan Rekomendasi Penting -->
+      <div class="badge-warning">
+        ⚠️ <strong>SARAN PENTING:</strong> Gunakan <strong>Unduh Per-Modul</strong> di bawah. Hindari unduh langsung full buku karena server sering limit/gagal di tengah jalan. Nanti file PDF-nya tinggal disatukan sendiri!
+      </div>
+
+      <!-- Tombol Utama (Direkomendasikan) -->
+      <button id="btn-download-single" class="btn-primary-single">
+        <span>⚡ UNDUH MODUL SAAT INI SAJA</span>
+        <span class="btn-subtext">✅ Paling Stabil, Cepat, & Anti-Gagal (Disarankan)</span>
+      </button>
+
+      <!-- Tombol Sekunder (Tidak Disarankan) -->
+      <button id="btn-download-all" class="btn-secondary-all">
+        ⚠️ Unduh Semua Modul Sekaligus (Sering Gagal / Timeout)
+      </button>
+
       <div class="badge-info">
-        ✨ <strong>Auto-Clean:</strong> Watermark & bar hitam UT otomatis dihapus bersih.<br>
+        ✨ <strong>Watermark Bersih:</strong> Bar hitam & watermark UT otomatis dibersihkan.<br>
         🌐 <strong>Background Tab:</strong> Bebas buka tab lain saat unduh berlangsung!
       </div>
 
-      <button id="btn-download-all" class="btn-all">
-        📚 UNDUH SEMUA MODUL (FULL 1 PDF)
-      </button>
-
-      <button id="btn-download-single" class="btn-single">
-        ⚡ Unduh Modul Saat Ini Saja
-      </button>
-
       <div class="footer">
-        Proses unduh akan berjalan di tab UT yang sedang aktif. Pantau lewat badge pil di atas halaman!
+        Alat riset teknis murni untuk keperluan studi & edukasi personal.
       </div>
     </div>
 
